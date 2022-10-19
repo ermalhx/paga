@@ -1,0 +1,74 @@
+{% load static %}
+{% load l10n %}
+{% load mathfilters %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Llogaritesi i Pages</title>
+    <link href="{% static 'css\bulma.css' %}" rel="stylesheet">
+    <link href="{% static 'css\main.css' %}" rel="stylesheet">
+    <div class="tabs is-centered is-medium">
+      <ul>
+        <li class="is-active" href="{% url 'home' %}"><a>Paga Bruto</a></li>
+        <li><a href="{% url 'neto' %}">Paga Neto</a></li>
+      </ul>
+    </div>
+</head>
+<body>
+<div class="container">
+    <div>
+        <div class="box my-5">
+            <form action="" method="post">
+                <div class="field is-horizontal">
+                    {% csrf_token %}
+                    <label class="label mr-3">Sa eshte paga bruto?</label>
+                    <input class="input is-small is-focused" type="number" step="0.01" value="0" name="pbruto" placeholder="Vendos Pagen" style="width: 20%;">
+                    <button class="button is-small is-info ml-3" type="submit">Llogarit</button>
+                </div>
+            </form>
+        </div>
+        <div class="message is-warning">
+          {% for msg in messages %}
+          <div class="message-body">{{msg}}</div>
+          {% endfor %}
+        </div>
+        <div class="card-content table-container">
+          <table class="table is-bordered">
+            <thead class="">
+              <tr class="has-background-info">
+                <th class="has-text-light">Paga Bruto</th>
+                <th class="has-text-light">Sig Shoq Punedhenesi</th>
+                <th class="has-text-light">Sig Shoq Punemarresi</th>
+                <th class="has-text-light">Sig Shoq Total</th>
+                <th class="has-text-light">Sig Shend Punedhenesi</th>
+                <th class="has-text-light">Sig Shend Punemarresi</th>
+                <th class="has-text-light">Sig Shend Total</th>
+                <th class="has-text-light">TAP</th>
+                <th class="has-text-light">Paga Neto</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="col-xs-3">{{pb|floatformat}}</td>
+                <td class="col-xs-3">{{sp|floatformat}}</td>
+                <td class="col-xs-3">{{sm|floatformat}}</td>
+                <td class="col-xs-3">{{sp|add:sm|floatformat}}</td>
+                <td class="col-xs-3">{{shp|floatformat}}</td>
+                <td class="col-xs-3">{{shm|floatformat}}</td>
+                <td class="col-xs-3">{{shp|add:shm|floatformat}}</td>
+                <td class="col-xs-3">{{tap|floatformat}}</td>
+                <td class="col-xs-3">{{pn|floatformat}}</td>
+              </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+<footer class="footer mt-5">
+  <div class="content has-text-centered">
+    <p>
+      <strong>Llogaritesi i Pages</strong> by <strong>Ermalhx</strong>
+    </p>
+  </div>
+</footer>
+</html>
