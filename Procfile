@@ -1,1 +1,1 @@
-web:gunicorn paga.wsgi
+web: gunicorn paga.wsgi --log-file -
