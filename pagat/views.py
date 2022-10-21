@@ -24,7 +24,7 @@ def prova(request):
                 shp = pagaminimale * 0.017
                 shm = pagaminimale *0.017
                 pn = pb - sm - shm
-            elif pb <= 40000 and pb > pagaminimale:
+            elif pb <= 40000 and pb >= pagaminimale:
                 sp = pb * 0.15
                 sm = pb * 0.095
                 shp = pb * 0.017
