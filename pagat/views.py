@@ -18,7 +18,7 @@ def prova(request):
             pb = float(pb)
             if pb<0:
                 messages.info(request,"Paga bruto nuk mund te jete me e vogel se 0")
-            elif pb <= 34000 and pb<=0:
+            elif pb <= 34000 and pb>=0:
                 sp = pagaminimale * 0.15
                 sm = pagaminimale * 0.095
                 shp = pagaminimale * 0.017
